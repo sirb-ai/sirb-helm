@@ -1,0 +1,19 @@
+# Minimal dependencies for a local or small self-hosted install.
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: sirb
+      POSTGRES_PASSWORD: change-me
+      POSTGRES_DB: sirb
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+  nats:
+    image: nats:2
+    command: ["-js"]
+    ports: ["4222:4222"]
+volumes:
+  pgdata: {}
